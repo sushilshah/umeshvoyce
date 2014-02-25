@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://demos.jquerymobile.com/1.4.0/pages-multi-page/index.html -->
+<html class="ui-mobile"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="http://demos.jquerymobile.com/1.4.0/pages-multi-page/index.html">--><base href=".">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multi-page</title>
+	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.0/css/themes/default/jquery.mobile-1.4.0.min.css">
+	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.0/_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="http://demos.jquerymobile.com/1.4.0/favicon.ico">
+	
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+<!-- 	<script src="./Multi-page_files/jquery.js"></script><style type="text/css"></style> -->
+<!-- 	<script src="./Multi-page_files/jquery.mobile-1.4.0.min.js"></script> -->
+	<script src="js/jquery.raty.js"></script>
+<script>
+var questionCount = 0;
+var pageNumber = 1;
+var _pageNumber = pageNumber + 1; 
+var allResponses = {'1' : [], '2':[], '3' : [], '4' :[], '5':[]};
+var thisPageResponses = {'1' : [], '2':[], '3' : [], '4' :[], '5':[]};
+var lastQues = false;
+var multiQues = true;
+var isFirstQues = 1;
+$( document ).ready(function() {
+	console.log($.mobile.pageContainer);
+	/* $('.rating').raty({ score: 3,
+						size: 40,
+						click: function(score, evt) {
+							if(score <= 2){
+								//$.mobile.changePage('#popup', { transition: "pop", role: "dialog", reverse: false } );
+							}
+						}
+		}); */
+		applyStart();
+	
+	
+	
+	$('#btn').click(function(){
+		//use pageNumber to redirect to the next page
+		
+		getNextQues();
+
+		
+	});
+	//getNextQues();	
+			
+});
+	//SUCCESS FAILURE needs to be added. If failed next button should not try and run this function
+	function getNextQues(){
+		$.ajax({
+			url: "/question",
+			type: "POST",
+			data : {questionNumber : 1.1 , rating: 1, numberOfQues : 4},
+			dataType : "html"
+		}).done(function( msg ){
+			jsonreq = $.parseJSON(msg);
+			createNextPage(jsonreq);
+			console.log("_pageNumber ");
+			console.log(_pageNumber);
+			console.log(msg);
+			$.mobile.changePage('#page_'+ _pageNumber );
+		});
+	}
+	
+	function createNextPageQues(jsonreq){
+		var newPages = "";
+		if(!jsonreq.questions.empty){
+			var ques = jsonreq.questions.questions;
+			var setGroupQues = false;
+			var _setNo = "999";
+			$.each(ques, function(index, value){
+				
+				if( typeof(value.setNo) != 'undefined' && ( value.setNo == "999" || value.setNo == _setNo ) ){
+					console.log("inside if loop");
+					if( value.setNo == "999" ){
+						console.log("inside if 2 loop");
+						newPages += '<div data-role="page" id="page_'+ pageNumber +'" data-theme="a" data-url="page_'+ pageNumber +'">';
+						newPages += '<div data-role="header"><h1>HEADER_needs_to_be_changed_Two</h1></div>';
+						newPages += '<div role="main" class="ui-content">';
+						setGroupQues = true;
+					}
+					_setNo = value.setNo;
+					newPages += '<h2>' + value.questionText + '</h2>';
+					newPages += '<div class="rating" name='+ index +'> </div>';
+					
+					//setting up by default rating of 3
+					if(allResponses["3"].indexOf(index) == -1){
+						allResponses["3"].push(index );
+						thisPageResponses["3"].push(index );
+					}
+				}else{
+					console.log("inside else loop");
+					_setNo = value.setNo;
+			/* 		if(_pageNumber == pageNumber){
+						newPages += '<div data-role="page" id="page_'+ pageNumber +'" data-theme="a" data-url="page_'+ pageNumber +'">';
+						newPages += '<div data-role="header"><h1>HEADER_needs_to_be_changed_Two</h1></div>';
+						newPages += '<div role="main" class="ui-content">';
+					} */
+					//pervious question set next button addded
+				//	newPages += '<p><a id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, from else Lets go next</a></p></div>';
+					/***####***/
+					newPages += '<div data-role="page" id="page_'+ pageNumber +'" data-theme="a" data-url="page_'+ pageNumber +'">';
+					newPages += '<div data-role="header"><h1>HEADER_needs_to_be_changed_Two</h1></div>';
+					newPages += '<div role="main" class="ui-content" data-role="content" role="main">';
+					
+					newPages += '<h2>' + value.questionText + '</h2>';
+					newPages += '<div class="rating" name='+ index +'> </div>';
+					if(isFirstQues != 1){
+						
+						if(Object.keys(ques).length == pageNumber - 2){ //-2 because currently i am starting from 2
+							newPages += '<p><a id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, double adding in else 2.1 Lets go next</a></p></div>';
+						}else{
+							var _nxtPgNo = pageNumber + 1;
+						//	alert(window.location);
+							newPages += "<p><a href='quiz.html#page_"+ _nxtPgNo + "'  class='ui-btn ui-shadow ui-corner-all' >Ok, addling in else 2 .2 Lets go next</a></p></div>";
+						}
+						
+						newPages += '<div data-role="footer" data-theme="a" role="contentinfo" class="ui-footer ui-bar-a"><h4 class="ui-title" role="heading" aria-level="1">Page Footer Text needs to be changed</h4></div><!-- /footer --></div><!-- /page one -->';
+						isFirstQues = 1;
+					}
+					//setting up by default rating of 3
+					if(allResponses["3"].indexOf(index) == -1){
+						allResponses["3"].push(index );
+						thisPageResponses["3"].push(index );
+					}
+					pageNumber++;
+					lastPage = true;
+					setGroupQues = false;
+				}
+			});
+		}
+		if(setGroupQues || isFirstQues == 1 ){
+			newPages += '<p><a id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, Lets go next</a></p></div>';
+			newPages += '<div data-role="footer" data-theme="a" role="contentinfo" class="ui-footer ui-bar-a"><h4 class="ui-title" role="heading" aria-level="1">Page Footer Text needs to be changed</h4></div><!-- /footer --></div><!-- /page one -->';
+		}
+	
+		return newPages;
+	}
+	
+	function createNextPage(jsonreq){
+		pageNumber++; //check might not be required
+			thisPageResponses = {'1' : [], '2':[], '3' : [], '4' :[], '5':[]}; //resetting the variable 
+			var nextPage = createNextPageQues(jsonreq);
+//			nextPage +=  createNextPageQues(jsonreq); 
+			//nextPage += '<p><a id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, Lets go next</a></p></div>';
+		//	nextPage += '<div data-role="footer" data-theme="a" role="contentinfo" class="ui-footer ui-bar-a"><h4 class="ui-title" role="heading" aria-level="1">Page Footer Text needs to be changed</h4></div><!-- /footer --></div><!-- /page one -->';
+			$( "#page_body" ).append(nextPage);
+			$('#page_body div[data-role="page"]').page();
+			//$.mobile.initializePage();
+			applyStart();
+	}
+	
+	
+	function applyStart(){
+		
+		$('.rating').raty({ score: 3,
+			size: 40,
+			click: function(score, evt) {
+				
+				
+				var _quesno = $(this).attr('name');
+				//alert('name: ' + $(this).attr('name') + "\nscore: " + score + "\nevent: " + evt);
+				
+				//TODO improve this.Two loops might not be required. Removing exiting rating and then adding the changed one.
+				/* Belive can be achieved using IndexOf check  
+				arr = arr.filter(function (e, i, arr) {
+    					return arr.lastIndexOf(e) === i;
+					});*/
+				$.each(allResponses , function (key, val){
+					$.each(val, function(index, result) {
+						if( result == _quesno){
+							allResponses[key].splice(index, 1);
+							thisPageResponses[key].splice(index, 1);
+						}
+					});
+				} );
+				
+				allResponses[score].push(_quesno); //pushing rating and question number for final response
+				thisPageResponses[score].push(_quesno);
+				if(score <= 2){
+					//$.mobile.changePage('#popup', { transition: "pop", role: "dialog", reverse: false } );
+				}
+			}
+		});
+	}
+	
+	</script>
+</head>
+
+<body id="page_body" style="" class="ui-mobile-viewport ui-overlay-a">
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="1.0" data-url="1.0" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 690px;">
+	<script>
+
+	</script>
+	<div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+		<h1 class="ui-title" role="heading" aria-level="1">Welcome Customer</h1>
+	</div><!-- /header -->
+
+
+	<div role="main" class="ui-content">
+		
+
+		<h2>We would really like to know how was your over all Experience here</h2>
+			<div class='rating' name='one'> </div>
+<!-- 		<h2>service?</h2><div class="rating" name=3.0> </div><h2>food</h2><div class="rating" name=2.0> </div><h2>ambience?</h2><div class="rating" name=4.0> </div>  -->
+		<p><a id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, Lets go next</a></p>
+<!-- 		<p><a href="#two" id="btn" class="ui-btn ui-shadow ui-corner-all" >Ok, Lets go next</a></p> -->
+<!-- 		 <p><a href="#popup" class="ui-btn ui-shadow ui-corner-all" data-rel="dialog" data-transition="pop">Show page "popup" (as a dialog)</a></p>  -->
+	</div><!-- /content -->
+
+	<div data-role="footer" data-theme="a" role="contentinfo" class="ui-footer ui-bar-a">
+		<h4 class="ui-title" role="heading" aria-level="1">Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page one -->
+
+<!-- Start of second page: #two -->
+<div data-role="page" id="two" data-theme="a" data-url="two">
+
+	<div data-role="header">
+		<h1>Two</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<h2>Two</h2>
+		<p>I have an id of "two" on my page container. I'm the second page container in this multi-page template.</p>
+		<p>Notice that the theme is different for this page because we've added a few <code>data-theme</code> swatch assigments here to show off how flexible it is. You can add any content or widget to these pages, but we're keeping these simple.</p>
+		<p><a href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Back to page "one"</a></p>
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="popup" data-url="popup">
+
+	<div data-role="header" data-theme="b">
+		<h1>Dialog</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<h2>Popup</h2>
+		<p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p>
+		<p><a href="#one" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left">Back to page "one"</a></p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page popup -->
+
+
+
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+
+
+</body></html>

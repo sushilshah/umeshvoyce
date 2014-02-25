@@ -1,0 +1,296 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+	<link rel="stylesheet" href="../css/jquery.mobile-1.4.0.min.css"> 
+	<link rel="stylesheet" href="../css/jqm-demos.css">
+
+	<script src="../js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.4.0.min.js"></script>
+
+<script src="js/jquery.raty.js"></script>
+
+
+
+
+
+
+
+<!-- <link rel="stylesheet" href="css/fancyInput.css"> -->
+<!-- <script src='js/fancyInput.js'></script> -->
+
+</head>
+<script type="text/javascript">
+	//ajax get table info from the server and dynamically create the table number with params
+		var responseJsn = {};
+		var globalRestId = 111;
+		var globalVarCurTable = 0;
+		var globalTableStatus = {};
+
+	$( document ).ready(function(){
+		$.ajax({
+			url: "/tablestatus",
+			type: "POST",
+			dataType : "text"
+		}).done(function( msg ){
+			tableStatusJsn = $.parseJSON(msg);
+			//var currTableStatus = tableStatusJsn.restaurantCurrentStatus.restaurantCurrentStatus; //two variables not required.
+			globalTableStatus = tableStatusJsn.restaurantCurrentStatus.restaurantCurrentStatus; 
+			$.each(globalTableStatus, function(restaurantId, restObj){
+				responseJsn = restObj;
+				$("h1 span").append(restaurantId);
+				$.each(restObj, function(key, value){
+					$("#tablelist").append('<p><a href="#popup" data-rel="dialog" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left btn-popup" name="' +key+ '" onClick="replacePopupDetails('+key+')">Table Number '+value.tableNumber+'</a></p>');
+				});
+			});
+			var tableNo = 0;
+			
+		});		
+		
+		
+// 		$(".ui-shadow").on("click", function(){
+// 			console.log("btn-popup");
+// 			console.log($(this).attr("name"));
+// 			$("#custName").html("my name");
+// 			//window.location.href = '#popup';
+// 		});
+		
+		
+// 		 $('.ui-btn').on("click", function(event, ui) {
+// 			    console.log("updateVersion, selected = " + $(this).attr('id'));
+// 		});
+	});
+	
+	function replacePopupDetails(key){
+		//var key =  $(this).attr("name");
+		//console.log("thisName");
+		//console.log(key);
+		//console.log(responseJsn[key]);
+		globalVarCurTable = responseJsn[key].tableNumber;
+		$("h2").html('Table Number : ' + responseJsn[key].tableNumber);
+		if(responseJsn[key].currentStatus != 0){
+			$("#custAvail").show();
+			$("#waitingCust").html(" ");
+			if(responseJsn[key].custName != null)
+				$("#custName").html("Customer Name : " + responseJsn[key].custName);
+			else
+				$("#custName").html("Customer Name : foo");
+			
+			$("#status").html("Status : " + responseJsn[key].currentStatus);
+			$("#occupiedSince").html("Occupied : " + responseJsn[key].occupiedSince);
+			$("#custNumber").html("Phone No. :  " +  responseJsn[key].phoneNumber); // TODO: need to mask the phone number from the server response itself in xx-xxx-1234
+		}else{
+			$("#custAvail").hide();
+			$("#waitingCust").html("Waiting for Customer");
+		}
+		
+	}
+	
+	function getTableNumber(){
+		$("#custinfo #tableNumber").html(globalVarCurTable );
+	}
+	
+</script>
+<body>
+<!-- Start of second page: #two -->
+<div data-role="page" id="one" data-theme="a" data-url="one">
+
+	<div data-role="header">
+		<h1>Table Info <span style="position: absolute;right: 0%;"> Restaurant id: </span>	</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div id="main_3_4">
+				<div id='tablelist'>
+				
+<!-- 				<a href="foo.html" data-rel="dialog">Open dialog</a> -->
+<!-- 				<a href="#popup" data-rel="dialog" data-transition="flip" type="button">Open dialog</a> -->
+<!-- 				<p><a id="gg" href="#popup" data-rel="dialog" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left btn-popup" name="1" onClick="replacePopupDetails()">Table Number xyz</a></p> -->
+				
+<!-- 				    <input type='text' id="tableNumber" place-holder="anefe" value="SomeXYZ no"> -->
+			</div>
+			
+		</div>
+		<p><a href="#" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Lets Go Next</a></p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+
+<!-- Start of customer info page: #custinfo -->
+<div data-role="page" id="custinfo" data-theme="a" data-url="custinfo">
+
+	<script type="text/javascript">
+		$( document ).ready(function(){
+			var responseCustInfo = {};
+			var localResponse = {};
+			$("#custInfoSubmit").on('click', function(){
+				localResponse['tableNumber'] = globalVarCurTable;
+				localResponse['phoneNumber'] =  $("#usrNumber").val();
+				localResponse['custName'] =  $("#usrName").val();
+				localResponse['currentStatus'] = 1; //1 = occupied
+				localResponse['restaurantId'] = globalRestId;
+				localResponse['occupiedSince'] = '';
+				var localResponseList = [];
+				localResponseList.push(localResponse);
+				var obj = {};
+				obj[globalRestId] = localResponseList;
+				
+				responseCustInfo['restaurantCurrentStatus'] = obj;
+				//responseCustInfo['restaurantCurrentStatus'].globalRestId = localResponseList;
+				//responseCustInfo[globalRestId] = localResponseList;
+				console.log(responseCustInfo);
+				console.log(JSON.stringify(localResponse));
+				console.log(JSON.stringify(localResponseList));
+				
+				$.ajax({
+					url: "/tablestatus",
+					type: "POST",
+					data : {resCusStat : JSON.stringify(localResponse)},
+					 success: function (data) {
+	//			       		alert("data sent");
+			            },
+					dataType : "json"
+				});
+			});
+		});
+	
+	</script>
+
+	<div data-role="header">
+		<h1>Welcome Customer</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div id="main_3_4">
+			<div>
+				Table Number
+				<span id="tableNumber"></span>
+<!-- 				    <input type='text' id="tableNumber" place-holder="anefe" value="SomeXYZ no"> -->
+			</div>
+			<div>
+				<p> Would love to have your phone number
+			  <input type="text" name='user' id='usrNumber' class="form-control" placeholder="Phone Number" required="" autofocus="">
+			  </p>
+				What the world knows you as.
+			   <input type="text" name='user' id='usrName' class="form-control" placeholder="Name" required="" autofocus="">
+			</div>
+		</div>
+<!-- 		//TODO onClick send ajax to server to update the current table status.  -->
+		<p><a href="#custInfoDone" id="custInfoSubmit" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b" onClick="">Done</a></p> 
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+
+
+
+<!-- ...previous page content... -->
+<!-- <button>Submit</button> -->
+<!-- ...some more content (hopefully)... -->
+
+
+<!-- Start of third page: #popup -->
+<div data-role="page" id="popup" data-url="popup">
+
+	<script type="text/javascript">
+
+ 
+	  
+
+	  
+	function takeFeedback(){
+		
+			var returnValue = getCurTableObj(globalTableStatus);
+			console.log(returnValue);
+			//$("#requestObj").val()
+			//$("input[id=requestObj]").val(JSON.stringify(returnValue));
+			//$("#form1").submit();
+			//window.location = "Survey.jsp";
+			
+			if(returnValue != false){
+				//call takefeedback ajax and from ajax send it to the quiz page
+				$.ajax({
+					url: "/takeFeedback",
+					type: "POST",
+					data : {requestObj : JSON.stringify(returnValue)},
+					 success: function (data) {
+			       		//alert("data sent");
+			       		window.location = "Survey.jsp";
+			       		console.log(data);
+			            },
+					dataType : "text"
+				});	
+ 			}
+	}
+
+	function getCurTableObj(globalTableStatus){
+		var _resturant = globalTableStatus[globalRestId];
+		var restaurantId = false;
+		$.each( _resturant, function(key, value){
+				if(_resturant[key].tableNumber == globalVarCurTable){
+					//var _resturant[key];
+					restaurantId = _resturant[key];
+				}
+		});
+		return restaurantId;
+	}
+	</script>
+
+	<div data-role="header" data-theme="b">
+		<h1>Table Details</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+	<form id='form1' action="/takeFeedback" method="post">
+		<div id='custAvail' >
+			<p id='status'>occupied</p>
+			<h2>Table Number </h2>
+			<p id="custName">Mr X.</p>
+			<p id="custNumber"> my ph no </p>
+			<p id="occupiedSince">timeStamp </p>
+			<a class="ui-btn ui-shadow ui-corner-all ui-btn-inline " onClick="takeFeedback()">Take Feedback</a>
+		</div>
+		<input type='hidden' id="requestObj" name="requestObj" />
+		</form>
+<!-- 		<p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p> -->
+		<p id='waitingCust'></p>
+		<a href="#custinfo" data-rel="custinfo" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left" onClick="getTableNumber()">Assign a new Cust</a>
+		<p><a href="#one" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left">Back</a>
+		</p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page popup -->
+
+<!-- Start of thanks customer for details : #custInfoDone -->
+<div data-role="page" id="custInfoDone" data-theme="a" data-url="custInfoDone">
+
+	<div data-role="header">
+		<h1>Welcome Customer</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<div id="main_3_4">
+			Thank you Mr X.
+			
+			See you after the meal.
+		</div>
+		<p><a href="#3_5" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">See you again</a></p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+
+
+
+</body>
+</html>

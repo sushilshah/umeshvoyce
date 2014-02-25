@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>the title</title>
+   <script src='/_ah/channel/jsapi'></script>
+   <script type="text/javascript" 
+   src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+   <script type="text/javascript" language="javascript">
+   $(document).ready(function() {
+	   
+	   var token;
+      $("#driver").click(function(event){
+          $.getJSON('/LiveFeeds', function(jd) {
+            //$('#stage').html('<p> Name: ' + jd.name + '</p>');
+            // $('#stage').append('<p>Age : ' + jd.age+ '</p>');
+            // $('#stage').append('<p> Sex: ' + jd.sex+ '</p>');
+             token=jd.token;
+             alert(jd.token);
+          });
+          
+          alert("Connection toek:" + token);
+          channel = new goog.appengine.Channel(token);
+          socket = channel.open();
+          socket.onopen = onOpened;
+          socket.onmessage = onMessage;
+          socket.onerror = onError;
+          socket.onclose = onClose;
+
+          
+      });
+   });
+   
+   onOpened = function(){
+	   
+	   alert("connection done!!!");
+   }
+   
+   onClose = function(){
+	   
+	   alert("Connection Closed!!!");
+   }
+   onMessage = function(message){
+	   $('#stage').append('<p>Message : ' +message.data + '</p>'); 
+	   alert(message.data+" recieved");
+	   
+   }
+   
+   onError  = function(errorobj){
+	   $('#stage').append('<p>Error Recieved: ' +errorobj.description + '</p>');
+	   alert("error recieved" +errorobj.description );
+   }
+   </script>
+</head>
+<body>
+   <p>Click on the button to load result.html file:</p>
+   <div id="stage" style="background-color:blue;">
+          STAGE
+   </div>
+   <input type="button" id="driver" value="Load Data" />
+</body>
+</html>

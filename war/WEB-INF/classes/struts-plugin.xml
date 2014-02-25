@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">     
+<struts>
+	<!-- <constant name="struts.devMode" value="false" />
+	<constant name="struts.configuration.xml.reload" value="false" />
+	<constant name="struts.i18n.reload" value="false" /> -->
+  
+	<bean type="com.opensymphony.xwork2.FileManager" class="org.apache.struts2.customfile.Struts2FileManagerOnGAE" name="Struts2FileManagerOnGAE" scope="singleton"/> 
+		
+	<constant name="struts.fileManager" value="Struts2FileManagerOnGAE"/>
+	
+    <bean type="com.opensymphony.xwork2.FileManagerFactory" class="org.apache.struts2.customfile.Struts2FileManagerFactoryOnGAE" name="default" scope="singleton"/>
+    
+    <constant name="struts.fileManagerFactory" value="default"/>
+</struts>

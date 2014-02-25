@@ -1,0 +1,53 @@
+{
+	"restaurantCurrentStatus": {
+		"111": [{
+			"tableNumber": 11,
+			"phoneNumber": "123456798",
+			"custName": "Cust11",
+			"currentStatus": 1,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		},
+		{
+			"tableNumber": 12,
+			"phoneNumber": "987654321",
+			"custName": "Cust12",
+			"currentStatus": 1,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		},
+		{
+			"tableNumber": 13,
+			"phoneNumber": "987654321",
+			"custName": "Cust13",
+			"currentStatus": 1,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		},
+		{
+			"tableNumber": 14,
+			"phoneNumber": "987654321",
+			"custName": "Cust14",
+			"currentStatus": 1,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		},
+		{
+			"tableNumber": 15,
+			"phoneNumber": "987654321",
+			"custName": "Cust15",
+			"currentStatus": 1,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		},
+		{
+			"tableNumber": 16,
+			"phoneNumber": "987654321",
+			"custName": null,
+			"currentStatus": 0,
+			"occupiedSince": 1391539143318,
+			"restaurantId": 111
+		}
+		]
+	}
+}
