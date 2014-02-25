@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Voyce Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    
+	
+    
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	
+	<script type="text/javascript">
+	 $(document).ready(function(){
+		
+		$("#page1").click(function(){
+			
+			$('#myTab a[href="#profile"]').tab('show');
+
+		});
+		
+		
+       $("#page2").click(function(){
+			
+    	  
+    	   register();
+
+		});
+		
+		
+		
+		$("#otherselect").hide();
+		
+		
+		
+		$("#catselect").click(function(){
+			
+			
+			  //Get all selected optin
+		    var selectedOption = $("#catselect option:selected");
+	        //Loop for all selected optin
+		    $("#catselect option:selected").each(function() {
+		        //get option object
+		        // var option = $(this);
+
+		        //Get option value
+		         var value = $(this).val();
+	             if(value =="Other")
+	               $("#otherselect").show();
+	             else
+	               $("#otherselect").hide();
+		        //Get optin text
+		       // var text = $(this).text();
+		        //Write your code here
+		        //alert(value);
+		       });
+
+			
+		});
+		
+		
+		 
+		      	  
+	  		
+	});
+	
+	</script>
+    </head>
+  <body data-spy="scroll" data-target=".navbar-example">
+
+    <!--Navigation Bar at the Top-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Voyce Registration</a>
+        </div>
+      </div>
+    </div>
+    <!-- Navigation End -->
+	
+    <!-- Main Content -->
+    
+    <div class="container">
+    <div class="bs-docs-section">
+    <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Restaurant Registration</a></li>
+        <li><a href="#profile" data-toggle="tab">Services</a></li>
+        <li><a href="#resttables" data-toggle="tab">Tables</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+        
+       <div class="panel panel-default">
+  					<div class="panel-body">
+        
+        <table class="table-responsive">
+        <tr>
+        <td style="width:50%;padding:25px">
+      
+         <table cellpadding="2">
+         <tr>
+         <td>
+         <span class="small" >Name Of Restaurant</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resName" class="form-control" placeholder="Name Of Restaurant">
+         
+         </div> 
+        </td>
+        </tr>
+        <tr colspan="2">
+         <td><span id="resNameError" style="color:red;"></span></td>
+        </tr>
+        <tr >
+         <td>
+         <span >Address Line 1</span>
+         </td>
+         <td>
+         <div class="input-group input-group-md">
+         <input type="text" id="resAdd1" class="form-control" placeholder="Address Line 1">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span >Address Line 2</span>
+         </td>
+         <td>
+         <div class="input-group input-group-md">
+         <input type="text" id="resAdd2" class="form-control" placeholder="Address Line 2">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span >Locality</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <!--  input type="text" class="form-control" placeholder="Locality" -->
+         <input type="text" id="locality" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Electronic City","Kormangala","HSR","MG ROAD","ST.STREETS"]' placeholder="Locality">
+         </div> 
+         </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span >City</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <!-- input type="text" class="form-control" placeholder="City" -->
+         <input type="text" id="city" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Bangalore","MySore","Allahabad","Ahemadabad","Kolkatta","Mysore","Shimoga"]'  placeholder="City" >
+         </div> 
+        </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span >State</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <!-- input type="text" class="form-control" placeholder="State"-->
+         <input type="text" id="state" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Karnataka","Delhi","Mumbai","Tamil Nadu","Hyderabad","Uttar Pradesh"]' placeholder="State">
+         </div> 
+        </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span >Country</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <!-- input type="text" class="form-control" id="country" placeholder="Country"-->
+         <input type="text" id="country" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["India","Wisconsin","Wyoming","UK","USA","Indiana","Indonasia"]' placeholder="Country">
+         </div> 
+        </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span >Telephone</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resTel" class="form-control" placeholder="Telephone">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span >Mobile</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resMob" class="form-control" placeholder="Mobile" />
+         </div> 
+        </td>
+        </tr>
+        
+      
+        </table>
+        </td>
+         <td style="width:50%;padding:25px">
+         <table cellpadding="2">
+         <tr>
+         <td>
+         <span >Facebook Page</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resFB" class="form-control" placeholder="Facebook Page">
+         </div> 
+        </td>
+        </tr>
+        
+        <tr >
+         <td>
+         <span >Website</span>
+         </td>
+         <td>
+         <div class="input-group input-group-md">
+         <input type="text" id="resWeb" class="form-control" placeholder="Website">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span><br/></span>
+         </td>
+         <td>
+         <div class="input-group input-group-lg">
+         <br />
+         </div> 
+        </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span >Owner Details</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resOwnDetail" class="form-control" placeholder="Details">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span >Owner Number</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text"  id="resOwnNumber" class="form-control" placeholder="Number">
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span >Owner Email</span>
+         </td>
+         <td>
+         <div class="input-group">
+         <input type="text" id="resOwnEmail" class="form-control" placeholder="Email">
+         </div> 
+         </td>
+         </tr>
+        
+        
+         <tr>
+         <td>
+         <span ></span>
+         </td>
+         <td>
+         <div class="input-group">
+         <br />
+         </div> 
+        </td>
+        </tr>
+        
+        
+                 <tr>
+         <td>
+         <span ></span>
+         </td>
+         <td>
+         <div class="input-group">
+           <br />
+         </div> 
+        </td>
+        </tr>
+        
+        
+         <tr>
+         <td>
+         <span ></span>
+         </td>
+         <td>
+         <div class="input-group">
+         <br />
+         <br />
+         <button type="button" class="btn btn-primary" id="page1">Save and Next</button>
+         </div> 
+        </td>
+        </tr>
+       
+        </table>
+         
+          
+         </td>
+        </tr>
+        </table> 
+        
+        </div>
+        </div>
+        </div>
+        <div class="tab-pane fade" id="profile">
+         <div id="container">
+                
+                 <div class="panel panel-default">
+  					<div class="panel-body">
+         		<div class="panel panel-default">
+  					<div class="panel-body">
+  					
+  					<table width="100%">
+  					<tr>
+  					<td width="28%">	<span>	Restaurent Category</span></td>
+  					
+  					<td style="width:36%; padding:0px 0px 0px 0px"> 
+  					 <!-- input type="text" class="form-control" id="country" placeholder="Country"-->
+                     
+                    <select id="rescatselect"  class="form-control">
+                    <option value="Pubs">Pubs</option>
+                    <option value="Fine Dine">Fine Dine</option>
+                    <option value="Fast Food">Fast Food</option>
+                    <option value="Other" >Other</option>
+                    </select>
+                     <!--  input type="text" id="country" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source='["Pubs","Fine Dine","Fast Food","Other"]' placeholder="Restaurent Category" -->
+                    </td>
+  					<td style="width:36%;padding:0px 0px 0px 10px">
+  				       <input  id="otherselect" type="text" class="form-control" placeholder="Other Category">	
+  					</td>
+  					</tr>
+  					</table>
+  			
+ 
+  					</div>
+			</div>
+			<div class="panel panel-default">
+  					<div class="panel-body">
+    					<table width="100%">
+    					    <tr>
+    						<td style="width:28%">
+    						  Facilities
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcdinein">
+      							</span>
+      							Dine In
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcdelivery">
+      							</span>
+      							Delivery
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    					<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fctakeaway">
+      							</span>
+      							Take Away
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fccatering">
+      							</span>
+      							Catering
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						</tr></table>
+  					</div>
+			</div>
+			<div class="panel panel-default">
+  					<div class="panel-body">
+    						<table width="100%"><tr>
+    						<td style="width:28%">
+    						  Features
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcfeature">
+      							</span>
+      							Pure Veg
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcpureveg" >
+      							</span>
+      							Halal
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcaircon">
+      							</span>
+      							Air-Con
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcwifiinternet">
+      							</span>
+      							Wifi-Internet
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						</tr>
+    						
+    						<tr>
+    						<td style="width:28%">
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcbar">
+      							</span>
+      							Bar 
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcsmokingarea">
+      							</span>
+      							Smoking Area
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcshisha">
+      							</span>
+      							Shisha
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox"  id="fclivemusic">
+      							</span>
+      							Live Music
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						</tr>
+    						
+    						
+    					<tr>
+    						<td style="width:28%">
+    						 
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fccarparking">
+      							</span>
+      							Car Parking
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcvaletparking">
+      							</span>
+      						    Valet Parking
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcswimpool">
+      							</span>
+      							Swim Pool
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcoutdoorseating">
+      							</span>
+      							Outdoor Seating
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						</tr>
+    						
+    						    						    						
+    						
+    						</table>
+
+  					</div>
+			</div>
+			<div class="panel panel-default">
+  					<div class="panel-body">
+    					<table width="95%"><tr>
+    						<td style="width:31%">
+    						  Payment Options
+    						</td>
+    						<td style="width:14%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fccash">
+      							</span>
+      							Cash
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:14%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fccredit">
+      							</span>
+      							Credit
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:14%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fcsodexo">
+      							</span>
+      							Sodexo
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:14%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fccitibankoffers">
+      							</span>
+      							Citi Bank Offers
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						<td style="width:14%;padding:0px 0px 0px 0px">
+    						
+    						<div class="input-group">
+      							<span class="input-group-addoncheck">
+        							<input type="checkbox" id="fconlineorders">
+      							</span>
+      							Online Orders
+    						</div><!-- /input-group -->
+    						
+    						</td>
+    						
+    						</tr>
+    						
+    						<tr>
+    						<td style="width:28%">
+    						Reservation
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						<div class="input-group">
+      						
+    						 <select id="catreservation"  class="form-control">
+                               <option value="Pubs">Pubs</option>
+			                    <option value="Fine Dine">Fine Dine</option>
+			                    <option value="Fast Food">Fast Food</option>
+			                    <option value="Other" >Other</option>
+			                    </select>
+			                    </div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						
+    						</td>
+    						</tr>
+    						
+    						
+    					<tr>
+    						<td style="width:28%">
+    						 Open Hours
+    						</td>
+    						<td style="width:18%;padding:10px 0px 0px 0px">
+    						<div class="input-group">
+      					     <input type="text" id="fcopenfromhrs" class="form-control" placeholder="From">
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:10px 0px 0px 10px">
+    						
+    						
+    						<div class="input-group">
+      						  <input type="text"  id="fcopentohrs" class="form-control" placeholder="To">
+    						</div><!-- /input-group -->
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						
+    						</td>
+    						<td style="width:18%;padding:0px 0px 0px 0px">
+    						
+    						
+    						
+    						</td>
+    						</tr>
+    						
+    						    						    						
+    						
+    						</table>
+
+    					
+  					</div>
+			</div>
+			<div class="panel panel-default">
+  					<div class="panel-body">
+    					<table width="100%">
+    					<tr>
+    					<td width="28%">Cusines</td>
+    					
+    					<td width="34%"><div class="input-group">
+      						
+    						 <select id="catcusine1"  class="form-control">
+                               <option value="Pubs">Pubs</option>
+			                    <option value="Fine Dine">Fine Dine</option>
+			                    <option value="Fast Food">Fast Food</option>
+			                    <option value="Other" >Other</option>
+			                    </select>
+			                    </div><!-- /input-group -->
+			                    
+			           </td>
+    					
+    					<td width="34%"> 
+    					
+    					<div class="input-group">
+      						
+    						 <select id="catcusine2"  class="form-control">
+                               <option value="Pubs">Pubs</option>
+			                    <option value="Fine Dine">Fine Dine</option>
+			                    <option value="Fast Food">Fast Food</option>
+			                    <option value="Other" >Other</option>
+			                    </select>
+			                    </div><!-- /input-group -->
+			           </td>
+    					
+    					<td width="4%"></td>
+    					
+    					</tr>
+    					
+    					
+    					<tr>
+    					<td width="28%"></td>
+    					
+    					<td width="34%">
+    					
+    					<div class="input-group">
+      						
+    						 <select id="catcusine3"  class="form-control">
+                               <option value="Pubs">Pubs</option>
+			                    <option value="Fine Dine">Fine Dine</option>
+			                    <option value="Fast Food">Fast Food</option>
+			                    <option value="Other" >Other</option>
+			                    </select>
+			                    </div><!-- /input-group -->
+    					
+    					</td>
+    					
+    					<td width="34%">
+    					
+    					<div class="input-group">
+      						
+    						 <select id="catcusine4"  class="form-control">
+                               <option value="Pubs">Pubs</option>
+			                    <option value="Fine Dine">Fine Dine</option>
+			                    <option value="Fast Food">Fast Food</option>
+			                    <option value="Other" >Other</option>
+			                    </select>
+			                    </div><!-- /input-group -->
+    					
+    					</td>
+    					
+    					<td width="4%"></td>
+    					
+    					</tr>
+    					
+    					
+    					
+    					
+    					<tr>
+    					<td width="28%">
+
+    					</td>
+    					
+    					<td width="34%"></td>
+    					
+    					<td width="34%"> <button type="button" class="btn btn-primary" id="page2">Save</button></td>
+    					
+    					<td width="4%"></td>
+    					
+    					</tr>
+    					
+    					
+    					
+    					</table>
+  					</div>
+			</div>
+			</div>
+        </div>
+      </div>
+    </div><!-- /example -->
+    <div class="tab-pane fade" id="resttables">
+    <div id="draggable1" class="ui-widget-content">
+    <p>Table No: 1</p>
+    </div>
+      <div id="draggable2" class="ui-widget-content">
+<p>Table No: 2</p>
+</div>
+    
+      <div id="draggable3" class="ui-widget-content">
+<p>Table No: 3</p>
+</div>
+    
+      <div id="draggable4" class="ui-widget-content">
+<p>Table No: 4</p>
+</div>
+    
+   
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+     
+   
+       
+    
+    </div>
+       
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--  script src="js/jquery-1.js"></script -->
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script>
+		$(function() {
+		$( "#draggable" ).draggable();
+		});
+		
+		$(function() {
+			$( "#draggable2" ).draggable();
+			});
+		$(function() {
+			$( "#draggable3" ).draggable();
+			});
+		
+		$(function() {
+			$( "#draggable4" ).draggable();
+			});
+		
+		$(function() {
+			$( "#draggable5" ).draggable();
+			});
+	
+	</script>
+    <script type="text/javascript" src="js/register.js"></script>
+</body></html>

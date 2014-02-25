@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.convention.result.path" value="/"></constant>
+    <constant name="struts.action.excludePattern" value="/_ah/.*?"/>
+    <package name="user" namespace="/" extends="struts-default, json-default">
+        <interceptors>
+            <interceptor name="authentication" class="com.voyce.interceptor.AuthenticationInterceptor"></interceptor>
+            <interceptor-stack name="authStack">
+                <interceptor-ref name="authentication"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref> 
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="login" type="redirect">/login.action</result>
+        </global-results>
+        <action name="dashboard" class="com.voyce.dashboard.actions.DashboardAction">
+            <interceptor-ref name="authStack"></interceptor-ref>
+            <result>/dashboard.jsp</result>
+        </action>
+        <action name="login" class="com.voyce.actions.LoginAction">
+            <result name="success" type="redirect">/dashboard.action</result>
+            <result name="input">/login.jsp</result>
+        </action>
+        <action name="aboutus" class="com.voyce.actions.AboutusAction">
+            <result name="success" >/aboutus.jsp</result>
+        </action>
+        <action name="CurrentVisits" class="com.voyce.actions.CurrentTodaysVisitsJSONAction">
+           <interceptor-ref name="authStack"></interceptor-ref>
+       	   <result type="json" />
+      </action>
+      <action name="LiveFeeds" 
+           class="com.voyce.dashboard.actions.DashBoardLiveFeedsAction">
+           <interceptor-ref name="authStack"></interceptor-ref>
+       	   <result type="json" />
+      </action>
+      <action name="asses" class="com.voyce.assessment.actions.AssessmentAction">
+            <interceptor-ref name="authStack"></interceptor-ref>
+        </action>
+      <action name="question" 
+           class="com.voyce.quiz.actions.QuestionAction">
+         
+       	   <result type="json" />
+      </action>
+      <action name="tablestatus" 
+           class="com.voyce.quiz.actions.RestaurantCurrentStatusAction">
+       	   <result type="json" />
+      </action>
+
+      <action name="takeFeedback" class="com.voyce.quiz.actions.TakeFeedbackAction">
+             <result type="json" />
+      </action>
+    </package>
+    
+      
+      <package name="default" namespace="/manage" extends="json-default">
+      <action name="signup" 
+           class="com.voyce.registration.action.SignupAction">
+       	   <result type="json" />
+      </action>
+    </package>
+      
+    <package name="default" namespace="/auto" extends="json-default">
+      <action name="auto" 
+           class="com.voyce.actions.AutoCompleterAction">
+       	   <result type="json" />
+      </action>
+    </package>
+       
+</struts>

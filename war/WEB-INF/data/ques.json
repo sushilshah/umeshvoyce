@@ -1,0 +1,423 @@
+{	
+"questions": {
+
+		"9999.0": {
+			"questionId": 9999,
+			"rateScore": 0.0,
+			"scale" : null,
+			"category" : "",
+			"questionText": "How was your overall experience?",
+			"nextQuestionMap": {
+				"1":[1.0,
+				2.0,
+				3.0,
+				4.0,
+				5.0],
+				"2":[1.0,
+				2.0,
+				3.0,
+				4.0,
+				5.0],
+				"3":[1.0,
+				2.0,
+				3.0,
+				4.0,
+				5.0],
+				"4":[1.0,
+				2.0,
+				3.0,
+				4.0,
+				5.0],
+				"5":[1.0,
+				2.0,
+				3.0,
+				4.0,
+				5.0]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 1.0,
+			"setNo": 999,
+			"level": null
+		},
+		
+		"1.0": {
+			"questionId": 1.0,
+			"rateScore": 0.0,
+			"scale" : 5,
+			"category" : "Food",
+			"questionText": "Food",
+			"nextQuestionMap": {
+				"1":[1.1,1.2,1.3,1.4,1.5],
+				"2":[1.1,1.2,1.3,1.4,1.5],
+				"3":[1.1,1.2,1.3,1.4,1.5],
+				"4":[1.1,1.2,1.3,1.4,1.5],
+				"5":[1.1,1.2,1.3,1.4,1.5]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 100,
+			"setNo": 1,
+			"level": 1
+		},
+
+		"2.0": {
+			"questionId": 2.0,
+			"rateScore": 0.0,
+			"scale" : 5 ,
+			"category" : "Service",
+			"questionText": "Service",
+			"nextQuestionMap": {
+				"1":[2.1,2.2,2.3],
+				"2":[2.1,2.2,2.3],
+				"3":[2.1,2.2,2.3],
+				"4":[2.1,2.2,2.3],
+				"5":[2.1,2.2,2.3]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 100,
+			"setNo": 1,
+			"level": 1
+		},
+
+		"3.0": {
+			"questionId": 3.0,
+			"rateScore": 0.0,
+			"scale" : 5,
+			"category" : "Ambience",
+			"questionText": "Ambience",
+			"nextQuestionMap": {
+				"1":[3.1,3.2,3.3],
+				"2":[3.1,3.2,3.3],
+				"3":[3.1,3.2,3.3],
+				"4":[3.1,3.2,3.3],
+				"5":[3.1,3.2,3.3]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 100,
+			"setNo": 1,
+			"level": 1
+		},
+
+		"4.0": {
+			"questionId": 4.0,
+			"rateScore": 0.0,
+			"scale" : 5,
+			"category" : "Value",
+			"questionText": "Value",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 100,
+			"setNo": 1,
+			"level": 1
+		},
+
+		"5.0": {
+			"questionId": 5.0,
+			"rateScore": 0.0,
+			"scale" : 5 ,
+			"category" : "Cleanliness",
+			"questionText": "Cleanliness",
+			"nextQuestionMap": {
+				"1":[5.1],
+				"2":[5.1],
+				"3":[5.1],
+				"4":[5.1],
+				"5":[5.1]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 100,
+			"setNo": 1,
+			"level": 1
+		},
+
+		"1.1": {
+			"questionId": 1.1,
+			"rateScore": 0.0,
+			"scale" : 5 ,
+			"category" : "Taste",
+			"questionText": "how would you score the taste of the food?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 99,
+			"setNo": null,
+			"level": 2
+		},
+		
+		"1.2": {
+			"questionId": 1.2,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Quantity",
+			"questionText": "was the quantity of each dish sufficient?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 89,
+			"setNo": null,
+			"level": 2
+		},
+
+		"1.3": {
+			"questionId": 1.3,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Well Cooked",
+			"questionText": "was the food cooked right?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 79,
+			"setNo": null,
+			"level": 2
+		},
+		
+		"1.4": {
+			"questionId": 1.4,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Temp",
+			"questionText": "was the food served at the right temperature?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 69,
+			"setNo": null,
+			"level": 2
+		},
+
+		"1.5": {
+			"questionId": 1.5,
+			"rateScore": 0.0,
+			"scale" : 5 ,
+			"category" : "Garnishing",
+			"questionText": "what about the presentation of the food?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 59,
+			"setNo": null,
+			"level": 2
+		},
+
+		"2.1": {
+			"questionId": 2.1,
+			"rateScore": 0.0,
+			"scale" : 3 ,
+			"category" : "Speed of service",
+			"questionText": "would you please rate the speed of service?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 98,
+			"setNo": null,
+			"level": 2
+		},
+
+		"2.2": {
+			"questionId": 2.2,
+			"rateScore": 0.0,
+			"scale" : 3 ,
+			"category" : "Friendliness",
+			"questionText": "was everyone here polite and friendly with you?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 88,
+			"setNo": null,
+			"level": 2
+		},
+
+		"2.3": {
+			"questionId": 2.3,
+			"rateScore": 0.0,
+			"scale" : 3 ,
+			"category" : "Providing Good Recommendations",
+			"questionText": "did you get any good recommendations for food?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 78,
+			"setNo": null,
+			"level": 2
+		},
+
+		"3.1": {
+			"questionId": 3.1,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Fragrance",
+			"questionText": "how was the fragrance in this restaurant?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 97,
+			"setNo": null,
+			"level": 2
+		},
+
+		"3.2": {
+			"questionId": 3.2,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Music",
+			"questionText": "what do you have to say about the music in this place?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 87,
+			"setNo": null,
+			"level": 2
+		},
+
+		"3.3": {
+			"questionId": 3.3,
+			"rateScore": 0.0,
+			"scale" : 3 ,
+			"category" : "Light",
+			"questionText": "got anything to say about the lighting in this place?",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 77,
+			"setNo": null,
+			"level": 2
+		},
+
+		"5.1": {
+			"questionId": 5.1,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Tables",
+			"questionText": "Tables",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 96,
+			"setNo": 2,
+			"level": 2
+		},
+
+		"5.2": {
+			"questionId": 5.2,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Plates & Cutlery",
+			"questionText": "Plates & Cutlery",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 0,
+			"setNo": 2,
+			"level": 2
+		},
+
+		"5.3": {
+			"questionId": 5.3,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Toilets",
+			"questionText": "Was the toilets and others sparkling clean",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 0,
+			"setNo": 2,
+			"level": 2
+		},
+
+		"5.4": {
+			"questionId": 5.4,
+			"rateScore": 0.0,
+			"scale" : 2 ,
+			"category" : "Handwash",
+			"questionText": "Handwash",
+			"nextQuestionMap": {
+				"1":[],
+				"2":[],
+				"3":[],
+				"4":[],
+				"5":[]
+			},
+			"previousQuestion": 0.0,
+			"weightage": 0,
+			"setNo": 2,
+			"level": 2
+		}
+	}
+}
